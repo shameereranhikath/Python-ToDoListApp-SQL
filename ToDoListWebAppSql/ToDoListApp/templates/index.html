@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="divTt">fsfdfsdf gtretertertr</div>
+<div class="row">
+    <div class="col">
+        <form class="form-inline" method="POST" action="AddItem/">
+            {% csrf_token %}
+            <input type="text" class="form-control mb-2 col-md-5" name="content" id="inlineFormInputName2" placeholder="EnterToDo List Item">
+            &nbsp;<button type="submit" class="btn btn-primary mb-2">Add Item</button>
+
+        </form>
+    </div>
+</div>
+
+
+
+
+<table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">SI.NO</th>
+        <th scope="col">CREATED DATE</th>
+        <th scope="col">DETAIL</th>
+        <th scope="col"></th>
+        
+      </tr>
+    </thead>
+    <tbody>
+        {% for Toda in TodaData %}
+      <tr>
+        <td>{{forloop.counter}} </td>
+        <td> {{Toda.created_date}}</td>
+        <td> {{Toda.text}}</td>
+        <td>
+            <form action="DeleteItem/{{Toda.id}}/" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            </td>
+      </tr>
+      {%endfor%}
+      </tbody>
+</table>
+
+    
+   
+
+{%endblock%}
